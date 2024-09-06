@@ -1,0 +1,115 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Asignación de Citas</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Citas</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+  <div class="container-fluid">
+    <!-- contenido -->
+    <hr />
+    <input type="button" value="Asignar Cita" class="btn btn-warning" (click)="mostrar_form('show')" />
+    <hr>
+    <div id="formulario" *ngIf="mform==true">
+
+<div class="row">
+  <div class="colg-lg-3">
+    <input type="date" class="form-control" placeholder="Fecha" [(ngModel)]="obj_citas.fecha">
+          <span style="color: red;" *ngIf="validar_fecha == false">Insertar Fecha de Cita</span>
+  </div>
+
+  <div class="col-lg-3">
+    <input type="time" class="form-control" placeholder="Hora" [(ngModel)]="obj_citas.hora">
+          <span style="color: red;" *ngIf="validar_hora == false">Insertar Hora de Cita</span>
+  </div>
+
+  <div class="col-lg-3">
+    <select class="form-control form-select" [(ngModel)]="obj_citas.fo_cliente">
+    <option *ngFor="let itemci of cliente" value="{{itemci.id_cliente}}">{{itemci.nombre}}</option>
+          </select>
+          <span style="color: red;" *ngIf="validar_cliente == false">Seleccionar Cliente</span>
+  </div>
+
+  <div class="col-lg-3">
+    <select class="form-control form-select" [(ngModel)]="obj_citas.fo_servicio">
+    <option *ngFor="let itemci of servicio" value="{{itemci.id_servicio}}">{{itemci.nombre}}</option>
+          </select>
+          <span style="color: red;" *ngIf="validar_servicio == false">Seleccionar Servicio a Realizar</span>
+  </div>
+
+
+
+</div>
+
+<br>
+<div class="row">
+
+  <div class="col-lg-4">
+    <input type="button" value="Guardar" class="btn btn-primary" style="width: 50%;" (click)="validar('guardar')"
+      *ngIf="botones_form==false">
+
+  </div>
+
+  <div class="col-lg-4">
+    <input type="button" value="Editar" class="btn btn-primary" style="width: 50%;" *ngIf="botones_form==true"
+      (click)="validar('editar')">
+
+  </div>
+
+  <div class="col-lg-4">
+    <input type="button" value="Cancelar" class="btn btn-secondary" style="width: 50%;"
+      (click)="mostrar_form('no show')">
+  </div>
+
+
+
+</div>
+
+
+
+    </div>
+    <hr>
+    <div id="tabla">
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+              
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Cliente</th>
+                <th>Servicio</th>
+              
+                <th>Acciones</th>
+                <tr *ngFor="let item of cita">
+                 
+                  <td>{{ item.fecha }}</td>
+                  <td>{{ item.hora }}</td>
+                  <td>{{ item.cliente }}</td>
+                  <td>{{ item.servicios }}</td>
+              
+                <td>
+                  <span class="fas fa-edit" style="color:black; cursor: pointer;" title="Editar"
+                  (click)="cargar_datos(item, item.id_citas)"></span>
+                <span class="fas fa-minus-square" style="color:red; cursor: pointer;" title="Eliminar"
+                  (click)="eliminar(item.id_citas)"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

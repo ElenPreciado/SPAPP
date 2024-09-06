@@ -1,0 +1,19 @@
+<div id="login" class="row">
+<div class="col-lg-3"></div>
+<div class="col-lg-3"></div>
+<div class="col-lg-3">
+    <div id="form">
+        <img src="../../../assets/dist/img/logo-spapp.png" style="width: 50%;" class="logo">
+    <div id="datos">
+        <input type="text" id="usuario" placeholder="Usuario" class="form-control" [(ngModel)]="usuario">
+        <input type="password" id="clave" placeholder="Contraseña" class="form-control" [(ngModel)]="clave">
+    <div class="col-12">
+        <span style="color: red;">Usuario o Contraseña Incorrecta</span>
+    </div>
+        <input type="button" value="Ingresar" class="btn btn-warning btn-block" value="INICIAR SESIÓN" (click)="consulta('')">
+        
+    </div>
+    </div>
+</div>
+<div class="col-lg-3"></div>
+</div>
